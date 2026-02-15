@@ -189,7 +189,7 @@ const MainPage = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 items-center">
+            <div className="grid grid-cols-2 gap-6 items-center justify-center">
               {[
                 {
                   icon: Database,
@@ -214,9 +214,13 @@ const MainPage = () => {
               ].map((item, index) => (
                 <div 
                   key={index}
-                  className="bg-linear-to-br  from-teal-50 to-cyan-50 p-6 rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1"
+                  className="flex-col items-center justify-center bg-linear-to-br  from-teal-50 to-cyan-50 p-6 rounded-2xl hover:shadow-lg transition-all hover:-translate-y-1"
                 >
-                  <item.icon className="w-10 h-10 text-teal-600 mb-4" />
+
+                  <div className='w-16 h-16 flex items-center justify-center mx-auto'>
+                  <item.icon className="w-10 h-10 text-teal-600  mb-4" />
+
+                  </div>
                   <h4 className="font-bold text-gray-900 mb-2">{item.title}</h4>
                   <p className="text-sm text-gray-600">{item.desc}</p>
                 </div>
@@ -235,11 +239,16 @@ const MainPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-white/10 backdrop-blur-lg p-10 rounded-3xl hover:bg-white/20 transition-all">
-              <div className="flex items-center space-x-3 mb-6">
-                <Target className="w-8 h-8" />
+            <div className="bg-white/10 flex-col items-center justify-center backdrop-blur-lg p-10 rounded-3xl hover:bg-white/20 transition-all">
+              
+
+              <div className="flex-col items-center justify-center space-x-3 mb-6">
+                <div className="w-16 h-16 flex items-center justify-center mx-auto">
+                <Target className="w-8 h-8 mb-5" />
+              </div>
                 <h3 className="text-3xl font-bold">Our Vision</h3>
               </div>
+
               <p className="text-xl mb-6 leading-relaxed">
                 "To redefine healthcare in Africa by building intelligent digital systems that connect people, providers, and data for better health."
               </p>
@@ -248,11 +257,14 @@ const MainPage = () => {
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg p-10 rounded-3xl hover:bg-white/20 transition-all">
-              <div className="flex items-center space-x-3 mb-6">
-                <Heart className="w-8 h-8" />
+            <div className="bg-white/10 flex-col items-center justify-center backdrop-blur-lg p-10 rounded-3xl hover:bg-white/20 transition-all">
+              <div className="flex-col items-center justify-center space-x-3 mb-6">
+                <div className='w-16 h-16 flex items-center justify-center mx-auto'>
+                  <Heart className="w-8 h-8 mb-5" />
+                </div>
                 <h3 className="text-3xl font-bold">Our Mission</h3>
               </div>
+              
               <p className="text-xl mb-6 leading-relaxed">
                 "To create and foster practical and intelligent digital health tools that solve real challenges in healthcare delivery – improving access, coordination, and quality of care across all levels of the health system."
               </p>
@@ -359,7 +371,8 @@ const MainPage = () => {
                 className="  flex-col justify-center items-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2"
               >
                 <div className={`w-14 h-14 
-                   bg-linear-to-br ${objective.color} ml-35 rounded-xl flex items-center justify-center mb-6`}>
+                   bg-linear-to-br ${objective.color} ml-35 rounded-xl flex items-center justify-center mb-6 
+                   `}>
                   <objective.icon className="w-7 h-7 text-white" />
                 </div>
                 <h4 className="text-xl font-bold text-gray-900 mb-3">{objective.title}</h4>
@@ -441,7 +454,12 @@ const MainPage = () => {
                   key={index}
                   className="bg-linear-to-br from-teal-50 to-cyan-50 p-6 rounded-2xl hover:shadow-lg transition-all"
                 >
-                  <feature.icon className="w-10 h-10 text-teal-600 mb-4 ml-25" />
+
+                    <div className='w-16 h-16 flex items-center justify-center mx-auto'>
+                  <feature.icon className="w-10 h-10 text-teal-600 mb-4 " />
+                    </div>
+                  
+                  
                   <h4 className="font-bold text-gray-900 mb-2 text-sm">{feature.title}</h4>
                   <p className="text-xs text-gray-600">{feature.desc}</p>
                 </div>
@@ -489,7 +507,7 @@ const MainPage = () => {
                 </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="">
                 <h4 className="text-2xl font-bold text-gray-900 mb-6">How IDIS2GO Extends Healthcare Access</h4>
                 
                 {[
@@ -512,13 +530,13 @@ const MainPage = () => {
                     color: 'from-teal-600 to-cyan-600'
                   }
                 ].map((step, index) => (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className={`w-12 h-12 bg-linear-to-br ${step.color} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                  <div key={index} className="flex items-start space-x-4 pb-4">
+                    <div className={`w-12 h-12 bg-linear-to-br ${step.color} rounded-xl flex items-center justify-center shrink-0`}>
                       <step.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <h5 className="font-bold text-gray-900 mb-1">{step.title}</h5>
-                      <p className="text-gray-600 text-sm">{step.desc}</p>
+                      <p className="text-gray-600 text-sm text-left">{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -563,7 +581,9 @@ const MainPage = () => {
 
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div className="bg-linear-to-br from-teal-600 to-cyan-700 p-10 rounded-3xl text-white">
+              <div className='w-16 h-16 flex items-center justify-center mx-auto'>
               <Building2 className="w-12 h-12 mb-6" />
+              </div>
               <h3 className="text-2xl font-bold mb-4">Intelligent Health Booths</h3>
               <p className="text-teal-100 text-lg leading-relaxed">
                 Self-service digital healthcare stations offering medical screening and teleconsultation.
@@ -571,7 +591,9 @@ const MainPage = () => {
             </div>
 
             <div className="bg-linear-to-br from-cyan-600 to-teal-700 p-10 rounded-3xl text-white">
-              <Activity className="w-12 h-12 mb-6" />
+              <div className='w-16 h-16 flex items-center justify-center mx-auto'>
+                <Activity className="w-12 h-12 mb-6" />
+              </div>
               <h3 className="text-2xl font-bold mb-4">Connected Health Devices</h3>
               <p className="text-cyan-100 text-lg leading-relaxed">
                 IoT-enabled tools for vital signs, ECG, blood sugar, and more, extending healthcare capabilities.
@@ -608,7 +630,9 @@ const MainPage = () => {
                   key={index}
                   className="bg-linear-to-br from-teal-50 to-cyan-50 p-6 rounded-2xl hover:shadow-lg transition-all"
                 >
+                  <div className='w-16 h-16 flex items-center justify-center mx-auto'>
                   <benefit.icon className="w-10 h-10 text-teal-600 mb-4" />
+                    </div>
                   <h4 className="font-bold text-gray-900 mb-2">{benefit.title}</h4>
                   <p className="text-sm text-gray-600">{benefit.desc}</p>
                 </div>
@@ -636,14 +660,17 @@ const MainPage = () => {
 
           <div className="grid md:grid-cols-2 gap-12 mb-12">
             <div className="bg-white p-10 rounded-3xl shadow-lg">
-              <div className="flex items-center space-x-3 mb-6">
+              <div className="flex-col justify-center items-center space-x-3 mb-6">
+                <div className='w-16 h-16 flex items-center justify-center mx-auto'>
                 <BookOpen className="w-10 h-10 text-teal-600" />
+
+                </div>
                 <h3 className="text-2xl font-bold text-gray-900">Digital Capacity Building</h3>
               </div>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Training health workers to effectively use eHealth tools, empowering healthcare professionals to adopt new digital technologies.
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-3 text-left">
                 {[
                   'Addresses insufficient IT skills and low digital literacy among healthcare workers',
                   'Overcomes key barriers to eHealth integration in African countries',
@@ -658,8 +685,10 @@ const MainPage = () => {
             </div>
 
             <div className="bg-white p-10 rounded-3xl shadow-lg">
-              <div className="flex items-center space-x-3 mb-6">
+              <div className="flex-col items-center space-x-3 mb-6">
+                <div className='w-16 h-16 flex items-center justify-center mx-auto'>
                 <TrendingUp className="w-10 h-10 text-cyan-600" />
+                </div>
                 <h3 className="text-2xl font-bold text-gray-900">Health Systems Strengthening</h3>
               </div>
               <p className="text-gray-600 mb-6 leading-relaxed">
