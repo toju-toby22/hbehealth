@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight, Users, Lightbulb, Shield, HandshakeIcon, BookOpen, Target, Award, Building2, TrendingUp, Activity, Smartphone, Cloud, Hospital, Stethoscope, Database, BarChart3, Globe, Heart, Zap, CheckCircle } from 'lucide-react';
-
+import logo from '../assets/HB HEALTH.png';
 const MainPage = () => {
   // Add Tailwind CSS
   useEffect(() => {
@@ -51,13 +51,7 @@ const MainPage = () => {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-linear-to-br from-teal-500 to-cyan-600 rounded-lg flex items-center justify-center">
-                <Activity className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold text-gray-900">HB E-health</div>
-                <div className="text-xs text-teal-600">Transforming Healthcare</div>
-              </div>
+              <img src={logo} alt="HB eHealth Logo" className=" h-12" />
             </div>
 
             {/* Desktop Navigation */}
@@ -114,7 +108,7 @@ const MainPage = () => {
             <div className="inline-block mb-6">
               <div className="flex items-center space-x-2 bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-medium">
                 <Activity className="w-4 h-4" />
-                <span>HB E-health</span>
+                <span>HB eHealth</span>
               </div>
             </div>
             
@@ -177,7 +171,7 @@ const MainPage = () => {
 
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">HB E-health Ltd</h3>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">HB eHealth Ltd</h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 A digital health company dedicated to transforming healthcare delivery in Africa through innovative, technology-driven solutions.
               </p>
@@ -333,7 +327,7 @@ const MainPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Strategic Objectives</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              HB E-health's strategic objectives guide our mission to transform healthcare in Africa through digital innovation.
+              HB eHealth's strategic objectives guide our mission to transform healthcare in Africa through digital innovation.
             </p>
             <div className="w-24 h-1 bg-linear-to-r from-teal-600 to-cyan-600 mx-auto"></div>
           </div>
@@ -395,7 +389,7 @@ const MainPage = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Health Information Systems</h2>
             <div className="w-24 h-1 bg-linear-to-r from-teal-600 to-cyan-600 mx-auto mb-6"></div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              HB E-health develops and deploys customized Hospital Management System (HMS) and Electronic Medical Record (EMR) platforms to transform healthcare delivery in Africa.
+              HB eHealth develops and deploys customized Hospital Management System (HMS) and Electronic Medical Record (EMR) platforms to transform healthcare delivery in Africa.
             </p>
           </div>
 
@@ -469,11 +463,11 @@ const MainPage = () => {
         </div>
       </section>
 
-      {/* Mobile & Telehealth Solutions */}
+      {/* Mobile & TeleHealth Solutions */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-teal-50 to-cyan-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Mobile & Telehealth Solutions</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Mobile & TeleHealth Solutions</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
               Extending healthcare access to underserved populations through innovative mobile solutions.
             </p>
@@ -486,7 +480,7 @@ const MainPage = () => {
                 <div className="inline-block bg-cyan-100 text-cyan-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                   Featured Solution
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-6">IDIS2GO: Portable Telehealth System</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-6">IDIS2GO: Portable TeleHealth System</h3>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   A comprehensive IoT and cloud solution that enables remote collection and transmission of patient data.
                 </p>
@@ -574,7 +568,7 @@ const MainPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Smart Health Infrastructure</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              HB E-health designs intelligent health booths and connected devices that serve as self-service digital healthcare stations, bringing essential care to underserved areas.
+              HB eHealth designs intelligent health booths and connected devices that serve as self-service digital healthcare stations, bringing essential care to underserved areas.
             </p>
             <div className="w-24 h-1 bg-linear-to-r from-teal-600 to-cyan-600 mx-auto"></div>
           </div>
@@ -691,7 +685,7 @@ const MainPage = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900">Health Systems Strengthening</h3>
               </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed">  
                 Using data and technology to make healthcare delivery more efficient, connected, and patient-centered across Africa.
               </p>
               <ul className="space-y-3">
@@ -725,7 +719,7 @@ const MainPage = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Building a Healthier Future for Africa</h2>
             <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
             <p className="text-xl text-teal-100 max-w-4xl mx-auto leading-relaxed">
-              HB E-health is dedicated to forging a healthier future for Africa by leveraging smart, reliable, and scalable digital solutions. We remain steadfast in our vision to redefine healthcare by building intelligent digital systems that seamlessly connect people, providers, and data, ultimately enhancing health outcomes across the continent.
+              HB eHealth is dedicated to forging a healthier future for Africa by leveraging smart, reliable, and scalable digital solutions. We remain steadfast in our vision to redefine healthcare by building intelligent digital systems that seamlessly connect people, providers, and data, ultimately enhancing health outcomes across the continent.
             </p>
           </div>
 
@@ -790,7 +784,7 @@ const MainPage = () => {
                   <Activity className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="text-xl font-bold">HB E-health</div>
+                  <div className="text-xl font-bold">HB eHealth</div>
                   <div className="text-xs text-teal-400">Transforming Healthcare</div>
                 </div>
               </div>
@@ -822,7 +816,7 @@ const MainPage = () => {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 HB E-health Ltd. All rights reserved.</p>
+            <p>&copy; 2025 HB eHealth Ltd. All rights reserved.</p>
           </div>
         </div>
       </footer>
