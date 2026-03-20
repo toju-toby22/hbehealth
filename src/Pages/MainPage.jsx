@@ -714,7 +714,7 @@ const MainPage = () => {
             </div>
           </div>
 
-          <img src={booth} alt="Health Booth" className="mx-auto h-[400px] mb-15 rounded-2xl shadow-lg" />
+          <img src={booth} alt="Health Booth" className="mx-auto w-full max-w-3xl h-auto md:h-[400px] object-contain rounded-2xl shadow-lg mb-15" />
 
           <div>
             <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Impact & Benefits</h3>
