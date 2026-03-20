@@ -20,6 +20,7 @@ const MainPage = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFading, setIsFading] = useState(false);
@@ -154,15 +155,59 @@ const MainPage = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t shadow-lg">
             <div className="px-4 py-4 space-y-3">
-              {['Home', 'About', 'Vision', 'Values', 'Products', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors"
-                >
-                  {item}
-                </button>
-              ))}
+              {['Home', 'About', 'Vision', 'Values', 'Products', 'Contact'].map((item) => {
+                if (item === 'Products') {
+                  return (
+                    <div key={item}>
+                      <button
+                        onClick={() => setIsMobileProductsOpen((prev) => !prev)}
+                        className="flex w-full items-center justify-between px-4 py-2 text-left text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors"
+                      >
+                        <span>Products</span>
+                        <ChevronDown className={`w-4 h-4 ${isMobileProductsOpen ? 'rotate-180' : ''}`} />
+                      </button>
+
+                      {isMobileProductsOpen && (
+                        <div className="ml-4 mt-2 space-y-1">
+                          {['products', 'bridgehms', 'idis2go', 'smart-health'].map((sub) => (
+                            <button
+                              key={sub}
+                              onClick={() => {
+                                const scrollTarget = sub === 'bridgehms' ? 'products' : sub;
+                                scrollToSection(scrollTarget);
+                                setIsMenuOpen(false);
+                                setIsMobileProductsOpen(false);
+                              }}
+                              className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-teal-50 rounded-lg"
+                            >
+                              {sub === 'bridgehms'
+                                ? 'BridgeHMS'
+                                : sub === 'idis2go'
+                                  ? 'IDIS2GO'
+                                  : sub === 'smart-health'
+                                    ? 'Smart Health Booth'
+                                    : sub.charAt(0).toUpperCase() + sub.slice(1)}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <button
+                    key={item}
+                    onClick={() => {
+                      scrollToSection(item.toLowerCase());
+                      setIsMenuOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg transition-colors"
+                  >
+                    {item}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
@@ -669,7 +714,7 @@ const MainPage = () => {
             </div>
           </div>
 
-          <img src={booth} alt="Health Booth" className="mx-auto h-[500px] mb-15 rounded-2xl shadow-lg" />
+          <img src={booth} alt="Health Booth" className="mx-auto h-[400px] mb-15 rounded-2xl shadow-lg" />
 
           <div>
             <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Impact & Benefits</h3>
