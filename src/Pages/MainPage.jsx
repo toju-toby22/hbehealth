@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, Users, Lightbulb, Shield, HandshakeIcon, BookOpen, Target, Award, Building2, TrendingUp, Activity, Smartphone, Cloud, Hospital, Stethoscope, Database, BarChart3, Globe, Heart, Zap, CheckCircle } from 'lucide-react';
+import { Menu, X, ChevronRight, ChevronDown, Users, Lightbulb, Shield, HandshakeIcon, BookOpen, Target, Award, Building2, TrendingUp, Activity, Smartphone, Cloud, Hospital, Stethoscope, Database, BarChart3, Globe, Heart, Zap, CheckCircle } from 'lucide-react';
 import logo from '../assets/HB HEALTH.png';
+import slide1 from '../assets/1.jpeg';
+import slide2 from '../assets/2.jpeg';
+import idis2go from '../assets/idis2go.jpeg';
+import bridge from '../assets/bridge.jpeg';
+import booth from '../assets/booth.jpeg';
+
 const MainPage = () => {
   // Add Tailwind CSS
   useEffect(() => {
@@ -13,6 +19,14 @@ const MainPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+  const slides = [
+    slide1,
+    slide2,
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +49,17 @@ const MainPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+        setTimeout(() => setIsFading(false), 500);
+      }, 500);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -46,7 +71,7 @@ const MainPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
+      <nav className={`fixed w-full bg-white text-amber-50 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
@@ -56,17 +81,63 @@ const MainPage = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Vision', 'Values', 'Products', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`text-sm font-medium transition-colors ${
-                    scrolled ? 'text-gray-700 hover:text-teal-600' : 'text-gray-800 hover:text-teal-600'
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
+              {['Home', 'About', 'Vision', 'Values', 'Products', 'Contact'].map((item) => {
+                if (item === 'Products') {
+                  return (
+                    <div key={item} className="relative">
+                      <button
+                        onClick={() => setIsProductsOpen((prev) => !prev)}
+                        className={`inline-flex items-center text-sm font-medium transition-colors ${
+                          scrolled ? 'text-gray-700 hover:text-teal-600' : 'text-gray-800 hover:text-teal-600'
+                        }`}
+                      >
+                        <span>Products</span>
+                        <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${isProductsOpen ? 'rotate-180' : ''}`} />
+                      </button>
+
+                      {isProductsOpen && (
+                        <div className="absolute left-0 mt-2 w-52 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                          {['bridgehms', 'idis2go', 'smart-health'].map((sub) => (
+                            <button
+                              key={sub}
+                              onClick={() => {
+                                let scrollTarget = sub;
+                                if (sub === 'bridgehms') scrollTarget = 'products';
+                                if (sub === 'smart-health') scrollTarget = 'smart-health';
+                                scrollToSection(scrollTarget);
+                                setIsProductsOpen(false);
+                              }}
+                              className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-teal-50"
+                            >
+                              {
+                                sub === 'bridgehms'
+                                  ? 'BridgeHMS'
+                                  : sub === 'idis2go'
+                                    ? 'IDIS2GO'
+                                    : sub === 'smart-health'
+                                      ? 'Smart Health Booth'
+                                      : sub.charAt(0).toUpperCase() + sub.slice(1)
+                              }
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item.toLowerCase())}
+                    className={`text-sm font-medium transition-colors ${
+                      scrolled ? 'text-gray-700 hover:text-teal-600' : 'text-gray-800 hover:text-teal-600'
+                    }`}
+                  >
+                    {item}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Mobile Menu Button */}
@@ -74,7 +145,7 @@ const MainPage = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-gray-100"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-black" />}
             </button>
           </div>
         </div>
@@ -99,27 +170,25 @@ const MainPage = () => {
 
       {/* Hero Section */}
       <section id="home" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-cyan-50 to-white opacity-60"></div>
-        <div className="absolute top-20 right-10 w-96 h-96 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className={`absolute inset-0 transition-opacity duration-1000 ${isFading ? 'opacity-0' : 'opacity-100'}`} style={{ backgroundImage: `url(${slides[currentSlide]})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-cyan-50 to-white opacity-60"></div> */}
+        {/* <div className="absolute top-20 right-10 w-96 h-96 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div> */}
         
         <div className="relative max-w-7xl mx-auto">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-block mb-6">
-              <div className="flex items-center space-x-2 bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-medium">
-                <Activity className="w-4 h-4" />
-                <span>HB eHealth</span>
-              </div>
+              {/* <div className="w-24 h-1 bg-linear-to-r from-teal-600 to-cyan-600 mx-auto"></div> */}
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-linear-to-r   from-teal-600 to-cyan-600 mb-6 leading-tight">
               Transforming Healthcare<br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-teal-600 to-cyan-600">
+              <span className="text-transparent bg-clip-text bg-linear-to-r text-gray-900">
                 Delivery in Africa
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white  mb-12 max-w-3xl mx-auto leading-relaxed">
               Digital health solutions connecting people, providers, and data for better health outcomes across Africa
             </p>
 
@@ -133,7 +202,7 @@ const MainPage = () => {
               ].map((feature, index) => (
                 <div 
                   key={index}
-                  className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                  className="bg-white p-3 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
                   style={{animationDelay: `${index * 0.1}s`}}
                 >
                   <feature.icon className="w-8 h-8 text-teal-600 mx-auto mb-3" />
@@ -142,17 +211,17 @@ const MainPage = () => {
               ))}
             </div>
 
-            <div className="flex sm:flex-row gap-4 justify-center">
+            <div className="flex sm:flex-row gap-5 justify-center">
               <button 
                 onClick={() => scrollToSection('about')}
-                className="px-8 py-4 bg-linear-to-r from-teal-600 to-cyan-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all hover:-translate-y-1 flex items-center justify-center space-x-2"
+                className="px-4 py-3 bg-linear-to-r from-teal-600 to-cyan-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all hover:-translate-y-1 flex items-center justify-center space-x-2"
               >
                 <span>Explore Our Solutions</span>
                 <ChevronRight className="w-5 h-5" />
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="px-8 py-4 bg-white text-teal-600 border-2 border-teal-600 rounded-xl font-semibold hover:bg-teal-50 transition-all"
+                className="px-4 py-3 bg-white text-teal-600 border-2 border-teal-600 rounded-xl font-semibold hover:bg-teal-50 transition-all"
               >
                 Get in Touch
               </button>
@@ -193,7 +262,7 @@ const MainPage = () => {
                 {
                   icon: Building2,
                   title: 'Health Infrastructure',
-                  desc: 'Smart health booths and connected devices for last-mile healthcare'
+                  desc: 'Smart health booths, Networking equipment,alternative power solutions and computer hardwares'
                 },
                 {
                   icon: BookOpen,
@@ -246,9 +315,7 @@ const MainPage = () => {
               <p className="text-xl mb-6 leading-relaxed">
                 "To redefine healthcare in Africa by building intelligent digital systems that connect people, providers, and data for better health."
               </p>
-              <p className="text-teal-100 leading-relaxed">
-                This vision guides us to create a future where digital health is not just an add-on, but a foundation for healthcare delivery across the continent.
-              </p>
+             
             </div>
 
             <div className="bg-white/10 flex-col items-center justify-center backdrop-blur-lg p-10 rounded-3xl hover:bg-white/20 transition-all">
@@ -262,9 +329,7 @@ const MainPage = () => {
               <p className="text-xl mb-6 leading-relaxed">
                 "To create and foster practical and intelligent digital health tools that solve real challenges in healthcare delivery – improving access, coordination, and quality of care across all levels of the health system."
               </p>
-              <p className="text-teal-100 leading-relaxed">
-                Our mission drives us to develop solutions that address the specific needs of African healthcare systems, focusing on practical applications that make a meaningful difference in patient outcomes.
-              </p>
+              
             </div>
           </div>
         </div>
@@ -364,8 +429,7 @@ const MainPage = () => {
                 key={index}
                 className="  flex-col justify-center items-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2"
               >
-                <div className={`w-14 h-14 
-                   bg-linear-to-br ${objective.color} ml-35 rounded-xl flex items-center justify-center mb-6 
+                <div className={`w-16 h-16 bg-linear-to-br ${objective.color}  rounded-xl flex items-center justify-center mx-auto mb-6 
                    `}>
                   <objective.icon className="w-7 h-7 text-white" />
                 </div>
@@ -461,10 +525,18 @@ const MainPage = () => {
             </div>
           </div>
         </div>
+
+        <img src={bridge} alt="Bridge" className="mx-auto" />
+
+        <a href="https://bridgehms.com" target="_blank" rel="noopener noreferrer"
+                className="inline-block mt-3 px-4 py-3 bg-white text-teal-600 border-2 border-teal-600 rounded-xl font-semibold hover:bg-teal-50 transition-all"
+              >
+                See More
+              </a>
       </section>
 
       {/* Mobile & TeleHealth Solutions */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-teal-50 to-cyan-50">
+      <section id="idis2go" className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-teal-50 to-cyan-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Mobile & TeleHealth Solutions</h2>
@@ -477,9 +549,9 @@ const MainPage = () => {
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
               <div>
-                <div className="inline-block bg-cyan-100 text-cyan-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                {/* <div className="inline-block bg-cyan-100 text-cyan-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                   Featured Solution
-                </div>
+                </div> */}
                 <h3 className="text-3xl font-bold text-gray-900 mb-6">IDIS2GO: Portable TeleHealth System</h3>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   A comprehensive IoT and cloud solution that enables remote collection and transmission of patient data.
@@ -535,8 +607,10 @@ const MainPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
 
+              
+            </div>
+<img src={idis2go} alt="IDIS2GO" className="mx-auto" />
             <div className="border-t pt-12">
               <h4 className="text-2xl font-bold text-gray-900 mb-8 text-center">Impact & Benefits</h4>
               <div className="grid md:grid-cols-4 gap-6">
@@ -563,10 +637,10 @@ const MainPage = () => {
       </section>
 
       {/* Smart Health Infrastructure */}
-      <section id="infrastructure" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="smart-health" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Smart Health Infrastructure</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Smart Health Booth</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
               HB eHealth designs intelligent health booths and connected devices that serve as self-service digital healthcare stations, bringing essential care to underserved areas.
             </p>
@@ -594,6 +668,8 @@ const MainPage = () => {
               </p>
             </div>
           </div>
+
+          <img src={booth} alt="Health Booth" className="mx-auto h-[500px] mb-15 rounded-2xl shadow-lg" />
 
           <div>
             <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Impact & Benefits</h3>
@@ -633,6 +709,8 @@ const MainPage = () => {
               ))}
             </div>
           </div>
+
+
 
           <div className="text-center mt-12">
             <div className="inline-block bg-gradient-to-r from-teal-100 to-cyan-100 text-teal-900 px-6 py-3 rounded-full font-semibold">
@@ -764,15 +842,97 @@ const MainPage = () => {
             Ready to transform healthcare delivery? Let's connect and explore how we can work together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-linear-to-r from-teal-600 to-cyan-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all hover:-translate-y-1">
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="px-8 py-4 bg-linear-to-r from-teal-600 to-cyan-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all hover:-translate-y-1"
+            >
               Contact Us
-            </button>
-            <button className="px-8 py-4 bg-white text-teal-600 border-2 border-teal-600 rounded-xl font-semibold hover:bg-teal-50 transition-all">
-              Learn More
             </button>
           </div>
         </div>
       </section>
+
+      {isContactModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={(e) => { if (e.target === e.currentTarget) setIsContactModalOpen(false); }}
+        >
+          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-2xl font-bold">Contact Form</h3>
+              <button
+                onClick={() => setIsContactModalOpen(false)}
+                className="text-gray-500 hover:text-gray-900"
+              >
+                X
+              </button>
+            </div>
+
+            <form
+              className="space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                alert('Form submitted!');
+                setIsContactModalOpen(false);
+              }}
+            >
+              <div>
+                <label className="block text-left text-sm font-semibold text-gray-700">First Name</label>
+                <input
+                  type="text"
+                  required
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-left text-sm font-semibold text-gray-700">Last Name</label>
+                <input
+                  type="text"
+                  required
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-left text-sm font-semibold text-gray-700">Email</label>
+                <input
+                  type="email"
+                  required
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-left text-sm font-semibold text-gray-700">Phone Number</label>
+                <input
+                  type="tel"
+                  required
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
+                />
+              </div>
+
+              <div className="flex justify-between items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsContactModalOpen(false)}
+                  className="rounded-lg border border-gray-300 px-4 py-2 font-semibold text-gray-700 hover:bg-gray-100"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="submit"
+                  className=" bg-linear-to-br from-teal-500 to-cyan-600 px-4 py-2 font-semibold text-white hover:bg-teal-700 rounded-lg border"
+                >
+                  Submit
+                </button>
+                
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -796,7 +956,7 @@ const MainPage = () => {
             <div>
               <h4 className="font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                {['About', 'Products', 'Infrastructure', 'Contact'].map((link) => (
+                {['About', 'Products', 'Contact'].map((link) => (
                   <li key={link}>
                     <button 
                       onClick={() => scrollToSection(link.toLowerCase())}
