@@ -5,7 +5,7 @@ import slide1 from '../assets/1.jpeg';
 import slide2 from '../assets/2.jpeg';
 import idis2go from '../assets/idis2go.jpeg';
 import bridge from '../assets/bridge.jpeg';
-import booth from '../assets/booth.jpeg';
+import booth from '../assets/booth1.png';
 
 const MainPage = () => {
   // Add Tailwind CSS
