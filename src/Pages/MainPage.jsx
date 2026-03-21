@@ -5,7 +5,7 @@ import slide1 from '../assets/1.jpeg';
 import slide2 from '../assets/2.jpeg';
 import idis2go from '../assets/idis2go.jpeg';
 import bridge from '../assets/bridge.jpeg';
-import booth from '../assets/booth1.png';
+import booth from '../assets/booth1.jpg';
 
 const MainPage = () => {
   // Add Tailwind CSS
@@ -214,8 +214,9 @@ const MainPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section id="home" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-slate-900">
         <div className={`absolute inset-0 transition-opacity duration-1000 ${isFading ? 'opacity-0' : 'opacity-100'}`} style={{ backgroundImage: `url(${slides[currentSlide]})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '100%' }}></div>
+        <div className="absolute inset-0 bg-black/40"></div>
         {/* <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-cyan-50 to-white opacity-60"></div> */}
         {/* <div className="absolute top-20 right-10 w-96 h-96 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div> */}
@@ -226,9 +227,9 @@ const MainPage = () => {
               {/* <div className="w-24 h-1 bg-linear-to-r from-teal-600 to-cyan-600 mx-auto"></div> */}
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-linear-to-r   from-teal-600 to-cyan-600 mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold  mb-6 leading-tight  text-transparent bg-clip-text bg-linear-to-r from-teal-600 to-cyan-600">
               Transforming Healthcare<br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r text-gray-900">
+              <span className='block text-5xl md:text-6xl lg:text-7xl font-bold text-white'>
                 Delivery in Africa
               </span>
             </h1>
@@ -442,7 +443,7 @@ const MainPage = () => {
             <div className="w-24 h-1 bg-linear-to-r from-teal-600 to-cyan-600 mx-auto"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mx-4 md:mx-0">
             {[
               {
                 icon: TrendingUp,
@@ -472,7 +473,7 @@ const MainPage = () => {
             ].map((objective, index) => (
               <div 
                 key={index}
-                className="  flex-col justify-center items-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2"
+                className="  flex-col lg:m-5  justify-center items-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2"
               >
                 <div className={`w-16 h-16 bg-linear-to-br ${objective.color}  rounded-xl flex items-center justify-center mx-auto mb-6 
                    `}>
@@ -504,9 +505,12 @@ const MainPage = () => {
 
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
+
+              <a href="https://bridgehms.com" target="_blank" rel="noopener noreferrer">
               <div className="inline-block bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 Flagship Solution
               </div>
+              </a>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">Bridge HMS</h3>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Our flagship solution that consolidates clinical, operational, and financial information into a unified digital ecosystem, revolutionizing healthcare management.
@@ -571,7 +575,7 @@ const MainPage = () => {
           </div>
         </div>
 
-        <img src={bridge} alt="Bridge" className="mx-auto" />
+        <img src={bridge} alt="Bridge" className="mx-auto w-full max-w-3xl h-auto md:h-[400px] object-contain rounded-2xl shadow-lg mb-15" />
 
         <a href="https://bridgehms.com" target="_blank" rel="noopener noreferrer"
                 className="inline-block mt-3 px-4 py-3 bg-white text-teal-600 border-2 border-teal-600 rounded-xl font-semibold hover:bg-teal-50 transition-all"
