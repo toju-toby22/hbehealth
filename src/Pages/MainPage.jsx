@@ -169,7 +169,7 @@ const MainPage = () => {
 
                       {isMobileProductsOpen && (
                         <div className="ml-4 mt-2 space-y-1">
-                          {['products', 'bridgehms', 'idis2go', 'smart-health'].map((sub) => (
+                          {['bridgehms', 'idis2go', 'smart-health'].map((sub) => (
                             <button
                               key={sub}
                               onClick={() => {
