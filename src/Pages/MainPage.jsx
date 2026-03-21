@@ -987,8 +987,8 @@ const MainPage = () => {
       <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
+            <div className="text-center">
+              <div className="flex items-center justify-center space-x-2 mb-4">
                 <div className="w-10 h-10 bg-linear-to-br from-teal-500 to-cyan-600 rounded-lg flex items-center justify-center">
                   <Activity className="w-6 h-6 text-white" />
                 </div>
@@ -1025,7 +1025,7 @@ const MainPage = () => {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 HB eHealth Ltd. All rights reserved.</p>
+            <p>&copy; 2026 HB eHealth Ltd. All rights reserved.</p>
           </div>
         </div>
       </footer>
