@@ -989,13 +989,13 @@ const MainPage = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div className="text-center">
               <div className="flex items-center justify-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-linear-to-br from-teal-500 to-cyan-600 rounded-lg flex items-center justify-center">
-                  <Activity className="w-6 h-6 text-white" />
+                <div className="p-4 bg-white rounded-lg flex items-center justify-center">
+                 <img src={logo} alt="HB eHealth Logo" className=" h-12" />
                 </div>
-                <div>
+                {/* <div>
                   <div className="text-xl font-bold">HB eHealth</div>
                   <div className="text-xs text-teal-400">Transforming Healthcare</div>
-                </div>
+                </div> */}
               </div>
               <p className="text-gray-400">
                 Digital health solutions connecting people, providers, and data for better health outcomes across Africa.
