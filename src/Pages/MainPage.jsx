@@ -605,7 +605,7 @@ const MainPage = () => {
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   A comprehensive IoT and cloud powered by <span>
                     <a className="text-blue-600 underline" href="https://www.sk-telemed.co.at/" target="_blank" rel="noopener noreferrer">SK-Telemed GmbH — Healthcare & Medical IT/Software Company</a>
-                    </span>  which provides solution that enables remote collection and transmission of patient data.
+                    </span>  which enables remote collection and transmission of patient data.
                 </p>
 
                 <div className="space-y-4">
