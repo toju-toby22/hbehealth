@@ -601,9 +601,11 @@ const MainPage = () => {
                 {/* <div className="inline-block bg-cyan-100 text-cyan-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                   Featured Solution
                 </div> */}
-                <h3 className="text-3xl font-bold text-gray-900 mb-6">IDIS2GO: Portable TeleHealth System</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-6 mt-8 ">IDIS2GO: Portable TeleHealth System</h3>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  A comprehensive IoT and cloud solution that enables remote collection and transmission of patient data.
+                  A comprehensive IoT and cloud powered by <span>
+                    <a className="text-blue-600 underline" href="https://www.sk-telemed.co.at/" target="_blank" rel="noopener noreferrer">SK-Telemed GmbH — Healthcare & Medical IT/Software Company</a>
+                    </span>  which provides solution that enables remote collection and transmission of patient data.
                 </p>
 
                 <div className="space-y-4">
