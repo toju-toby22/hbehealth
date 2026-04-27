@@ -22,6 +22,10 @@ const MainPage = () => {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [contactFirstName, setContactFirstName] = useState('');
+  const [contactLastName, setContactLastName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactPhone, setContactPhone] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const slides = [
@@ -69,6 +73,24 @@ const MainPage = () => {
     }
   };
 
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+
+    const recipient = 'info@hbehealth.com';
+    const subject = encodeURIComponent('New contact request from HB eHealth website');
+    const bodyLines = [
+      `First Name: ${contactFirstName}`,
+      `Last Name: ${contactLastName}`,
+      `Email: ${contactEmail}`,
+      `Phone: ${contactPhone}`,
+    ];
+    const body = encodeURIComponent(bodyLines.join('\n'));
+    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+    setIsContactModalOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -82,7 +104,7 @@ const MainPage = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Vision', 'Values', 'Products', 'Contact'].map((item) => {
+              {['Home', 'About',, 'Products', 'Contact'].map((item) => {
                 if (item === 'Products') {
                   return (
                     <div key={item} className="relative">
@@ -98,7 +120,7 @@ const MainPage = () => {
 
                       {isProductsOpen && (
                         <div className="absolute left-0 mt-2 w-52 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                          {['bridgehms', 'idis2go', 'smart-health'].map((sub) => (
+                          {['bridgehms', 'idis2go', 'smart-health, bridgeCare'].map((sub) => (
                             <button
                               key={sub}
                               onClick={() => {
@@ -155,7 +177,7 @@ const MainPage = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t shadow-lg">
             <div className="px-4 py-4 space-y-3">
-              {['Home', 'About', 'Vision', 'Values', 'Products', 'Contact'].map((item) => {
+              {['Home', 'About', 'Products', 'Contact'].map((item) => {
                 if (item === 'Products') {
                   return (
                     <div key={item}>
@@ -169,7 +191,7 @@ const MainPage = () => {
 
                       {isMobileProductsOpen && (
                         <div className="ml-4 mt-2 space-y-1">
-                          {['bridgehms', 'idis2go', 'smart-health'].map((sub) => (
+                          {['bridgehms', 'idis2go', 'smart-health', 'bridgeCare'].map((sub) => (
                             <button
                               key={sub}
                               onClick={() => {
@@ -382,7 +404,7 @@ const MainPage = () => {
       </section>
 
       {/* Core Values Section */}
-      <section id="values" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* <section id="values" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Core Values</h2>
@@ -430,10 +452,10 @@ const MainPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Strategic Objectives Section */}
-      <section id="objectives" className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-gray-50 to-teal-50">
+      {/* <section id="objectives" className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-gray-50 to-teal-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Strategic Objectives</h2>
@@ -490,7 +512,7 @@ const MainPage = () => {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Products Section - Health Information Systems */}
       <section id="products" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
@@ -605,7 +627,7 @@ const MainPage = () => {
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   A comprehensive IoT and cloud powered by <span>
                     <a className="text-blue-600 underline" href="https://www.sk-telemed.co.at/" target="_blank" rel="noopener noreferrer">SK-Telemed GmbH — Healthcare & Medical IT/Software Company</a>
-                    </span>  which enables remote collection and transmission of patient data.
+                    </span>  which  enables remote collection and transmission of patient data.
                 </p>
 
                 <div className="space-y-4">
@@ -693,7 +715,7 @@ const MainPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Smart Health Booth</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              HB eHealth designs intelligent health booths and connected devices that serve as self-service digital healthcare stations, bringing essential care to underserved areas.
+              HBI’s Smart Telehealth Booth brings high-quality healthcare closer to you. Each walk-in booth is equipped with the advanced IDIS2GO diagnostic system, connecting you instantly to doctors via the BridgeCare platform. Whether you use the BridgeCare App from home for a consultation or visit a booth for a check-up with an onsite assistant, getting care is simple and fast. We offer three flexible levels of service:
             </p>
             <div className="w-24 h-1 bg-linear-to-r from-teal-600 to-cyan-600 mx-auto"></div>
           </div>
@@ -703,9 +725,9 @@ const MainPage = () => {
               <div className='w-16 h-16 flex items-center justify-center mx-auto'>
               <Building2 className="w-12 h-12 mb-6" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">Intelligent Health Booths</h3>
+              <h3 className="text-2xl font-bold mb-4">Quick Tests</h3>
               <p className="text-teal-100 text-lg leading-relaxed">
-                Self-service digital healthcare stations offering medical screening and teleconsultation.
+                Fast diagnostic results on the spot.
               </p>
             </div>
 
@@ -713,9 +735,19 @@ const MainPage = () => {
               <div className='w-16 h-16 flex items-center justify-center mx-auto'>
                 <Activity className="w-12 h-12 mb-6" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">Connected Health Devices</h3>
+              <h3 className="text-2xl font-bold mb-4">Consultation</h3>
               <p className="text-cyan-100 text-lg leading-relaxed">
-                IoT-enabled tools for vital signs, ECG, blood sugar, and more, extending healthcare capabilities.
+                A diagnostic session followed by a live talk with a doctor.
+              </p>
+            </div>
+
+            <div className="bg-linear-to-br from-cyan-600 to-teal-700 p-10 rounded-3xl text-white text-center md:col-span-2 max-w-md mx-auto">
+              <div className='w-16 h-16 flex items-center justify-center mx-auto'>
+                <Hospital className="w-12 h-12 mb-6" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Complete Care</h3>
+              <p className="text-cyan-100 text-lg leading-relaxed">
+                Diagnostics and consultation with a direct referral to a hospital if you need further treatment.
               </p>
             </div>
           </div>
@@ -921,17 +953,15 @@ const MainPage = () => {
 
             <form
               className="space-y-4"
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert('Form submitted!');
-                setIsContactModalOpen(false);
-              }}
+              onSubmit={handleContactSubmit}
             >
               <div>
                 <label className="block text-left text-sm font-semibold text-gray-700">First Name</label>
                 <input
                   type="text"
                   required
+                  value={contactFirstName}
+                  onChange={(e) => setContactFirstName(e.target.value)}
                   className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
                 />
               </div>
@@ -941,6 +971,8 @@ const MainPage = () => {
                 <input
                   type="text"
                   required
+                  value={contactLastName}
+                  onChange={(e) => setContactLastName(e.target.value)}
                   className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
                 />
               </div>
@@ -950,6 +982,8 @@ const MainPage = () => {
                 <input
                   type="email"
                   required
+                  value={contactEmail}
+                  onChange={(e) => setContactEmail(e.target.value)}
                   className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
                 />
               </div>
@@ -959,6 +993,8 @@ const MainPage = () => {
                 <input
                   type="tel"
                   required
+                  value={contactPhone}
+                  onChange={(e) => setContactPhone(e.target.value)}
                   className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
                 />
               </div>
