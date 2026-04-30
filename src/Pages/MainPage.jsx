@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, ChevronDown, Users, Lightbulb, Shield, HandshakeIcon, BookOpen, Target, Award, Building2, TrendingUp, Activity, Smartphone, Cloud, Hospital, Stethoscope, Database, BarChart3, Globe, Heart, Zap, CheckCircle, Mail, Phone, Linkedin } from 'lucide-react';
+import { Menu, X, ChevronRight, ChevronDown, Users, Lightbulb, Shield, HandshakeIcon, BookOpen, Target, Award, Building2, TrendingUp, Activity, Smartphone, Cloud, Hospital, Stethoscope, Database, BarChart3, Globe, Heart, Zap, CheckCircle, Mail, Phone, Linkedin, MapPin } from 'lucide-react';
 import logo from '../assets/HB HEALTH.png';
 import slide1 from '../assets/1.jpeg';
 import slide2 from '../assets/2.jpeg';
@@ -26,6 +26,7 @@ const MainPage = () => {
   const [contactLastName, setContactLastName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
+  const [contactAddress, setContactAddress] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const slides = [
@@ -83,6 +84,7 @@ const MainPage = () => {
       `Last Name: ${contactLastName}`,
       `Email: ${contactEmail}`,
       `Phone: ${contactPhone}`,
+      `Address: ${contactAddress}`,
     ];
     const body = encodeURIComponent(bodyLines.join('\n'));
     const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
@@ -999,6 +1001,17 @@ const MainPage = () => {
                 />
               </div>
 
+              <div>
+                <label className="block text-left text-sm font-semibold text-gray-700">Address</label>
+                <input
+                  type="text"
+                  value={contactAddress}
+                  onChange={(e) => setContactAddress(e.target.value)}
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-teal-500"
+                  placeholder="Optional"
+                />
+              </div>
+
               <div className="flex justify-between items-center gap-2">
                 <button
                   type="button"
@@ -1064,14 +1077,18 @@ const MainPage = () => {
                   <Mail className="w-6 h-6" />
                   <p>info@hbehealth.com</p>
                 </a>
-                <a  className="flex items-center gap-2 text-gray-400 hover:text-teal-400 transition-colors">
+                <div className="flex items-center gap-2 text-gray-400">
                   <Phone className="w-6 h-6" />
                   <p>+234 810 916 7842, +234 813 938 3054</p>
-                </a>
-                <a href="https://linkedin.com/company/hb-ehealth" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition-colors">
+                </div>
+                <a href="https://linkedin.com/company/hb-ehealth" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-teal-400 transition-colors">
                   <Linkedin className="w-6 h-6" />
-
+                  <p>hb ehealth</p>
                 </a>
+                <div className="flex gap-2 text-gray-400">
+                  <MapPin className="w-6 h-6" />
+                  <p className='text-left'>Plot 467, Joseph E. Adetoro Street, Utako,Abuja,Nigeria</p>
+                </div>
               </div>
             </div>
           </div>
