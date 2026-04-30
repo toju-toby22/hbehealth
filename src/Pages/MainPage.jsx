@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, ChevronDown, Users, Lightbulb, Shield, HandshakeIcon, BookOpen, Target, Award, Building2, TrendingUp, Activity, Smartphone, Cloud, Hospital, Stethoscope, Database, BarChart3, Globe, Heart, Zap, CheckCircle } from 'lucide-react';
+import { Menu, X, ChevronRight, ChevronDown, Users, Lightbulb, Shield, HandshakeIcon, BookOpen, Target, Award, Building2, TrendingUp, Activity, Smartphone, Cloud, Hospital, Stethoscope, Database, BarChart3, Globe, Heart, Zap, CheckCircle, Mail, Phone, Linkedin } from 'lucide-react';
 import logo from '../assets/HB HEALTH.png';
 import slide1 from '../assets/1.jpeg';
 import slide2 from '../assets/2.jpeg';
@@ -104,7 +104,7 @@ const MainPage = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About',, 'Products', 'Contact'].map((item) => {
+              {['Home', 'About','Products', 'Contact'].map((item) => {
                 if (item === 'Products') {
                   return (
                     <div key={item} className="relative">
@@ -120,7 +120,7 @@ const MainPage = () => {
 
                       {isProductsOpen && (
                         <div className="absolute left-0 mt-2 w-52 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                          {['bridgehms', 'idis2go', 'smart-health, bridgeCare'].map((sub) => (
+                          {['bridgehms', 'idis2go', 'smart-health', 'BridgeCare'].map((sub) => (
                             <button
                               key={sub}
                               onClick={() => {
@@ -1059,6 +1059,20 @@ const MainPage = () => {
             <div>
               <h4 className="font-bold mb-4">Connect With Us</h4>
               <p className="text-gray-400 mb-4">Stay updated with our latest innovations and solutions.</p>
+              <div className="flex flex-col items-start gap-6">
+                <a href="mailto:info@hbehealth.com" className="flex items-center gap-2 text-gray-400 hover:text-teal-400 transition-colors">
+                  <Mail className="w-6 h-6" />
+                  <p>info@hbehealth.com</p>
+                </a>
+                <a  className="flex items-center gap-2 text-gray-400 hover:text-teal-400 transition-colors">
+                  <Phone className="w-6 h-6" />
+                  <p>+234 810 916 7842, +234 813 938 3054</p>
+                </a>
+                <a href="https://linkedin.com/company/hb-ehealth" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-teal-400 transition-colors">
+                  <Linkedin className="w-6 h-6" />
+
+                </a>
+              </div>
             </div>
           </div>
           
